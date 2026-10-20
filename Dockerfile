@@ -7,7 +7,11 @@ RUN npm ci
 
 FROM node:22-bookworm-slim AS build
 WORKDIR /app
-ENV NEXT_TELEMETRY_DISABLED=1
+# Baked into the static pages at build time (robots meta, canonical URLs, sitemap).
+# EasyPanel passes the service's environment variables as build args; change them, then redeploy.
+ARG NEXT_PUBLIC_SITE_URL=https://lumenrealty.ae
+ARG NEXT_PUBLIC_ALLOW_INDEXING=false
+ENV NEXT_TELEMETRY_DISABLED=1 NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL NEXT_PUBLIC_ALLOW_INDEXING=$NEXT_PUBLIC_ALLOW_INDEXING
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
