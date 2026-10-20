@@ -1,8 +1,9 @@
+import { PhotoBox } from "@/components/Photo";
+import type { MediaKey } from "@/content/media";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs, ConsultationBand } from "@/components/ui";
-import { Plate } from "@/components/Art";
 import { ArticleCard } from "@/components/cards";
 import { getArticle, publishedArticles } from "@/content/insights";
 import { site } from "@/content/site";
@@ -48,7 +49,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <p className="label muted mt-8">Updated <time dateTime={a.updated}>{fmt(a.updated)}</time></p>
           </div>
         </header>
-        <div className="wrap"><div className="aspect-[21/8] overflow-hidden"><Plate seed={a.slug} tone="teal" kind="arcade" className="h-full w-full" /></div></div>
+        <div className="wrap"><div className="aspect-[21/8] overflow-hidden"><PhotoBox name={`article-${a.slug}` as MediaKey} sizes="100vw" /></div></div>
         <div className="wrap band-tight">
           <div className="prose-lumen mx-auto text-[1.1rem]">
             {a.body.map((b, i) => (

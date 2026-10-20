@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     u("/contact", 0.8),
     u("/privacy-policy", 0.2),
     u("/terms", 0.2),
+    u("/credits", 0.1),
     ...services.map((s) => u(`/services/${s.slug}`, 0.8)),
     ...communities.map((c) => u(`/communities/${c.slug}`, 0.7)),
     ...team.map((m) => u(`/team/${m.slug}`, 0.4)),

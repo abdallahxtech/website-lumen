@@ -1,7 +1,7 @@
+import { PhotoBox } from "@/components/Photo";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { PageHero, ConsultationBand } from "@/components/ui";
-import { Plate } from "@/components/Art";
 import { Mark } from "@/components/Logo";
 import { TeamCard } from "@/components/cards";
 import { ArrowRight } from "@/components/Icons";
@@ -37,7 +37,7 @@ export default function AboutPage() {
       />
       <section className="on-ivory band">
         <div className="wrap grid items-center gap-14 lg:grid-cols-2 lg:gap-24">
-          <div className="aspect-[4/5] overflow-hidden"><Plate seed="about-arcade" tone="navy" kind="arcade" className="h-full w-full" /></div>
+          <div className="aspect-[4/5] overflow-hidden"><PhotoBox name="about" /></div>
           <div className="min-w-0">
             <p className="label label-gold">Who we are</p>
             <h2 className="display t-2 mt-6">A Dubai brokerage built on <em>personal attention.</em></h2>

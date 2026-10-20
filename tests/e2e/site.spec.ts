@@ -3,7 +3,7 @@ import { test, expect, type Page } from "@playwright/test";
 const ROUTES = [
   "/", "/properties", "/developments", "/communities", "/communities/palm-jumeirah", "/services", "/services/buy", "/services/sell",
   "/services/rent", "/services/off-plan", "/about", "/team", "/team/wael-naeem", "/team/mostafa-zanaty", "/insights",
-  "/insights/dubai-property-buying-costs", "/contact", "/privacy-policy", "/terms",
+  "/insights/dubai-property-buying-costs", "/contact", "/privacy-policy", "/terms", "/credits",
 ];
 const WIDTHS = [320, 375, 390, 430, 768, 1024, 1440, 1920];
 

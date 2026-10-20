@@ -1,6 +1,6 @@
+import { Photo, PhotoBox } from "@/components/Photo";
+import type { MediaKey } from "@/content/media";
 import Link from "next/link";
-import Image from "next/image";
-import { HeroArt, Plate } from "@/components/Art";
 import { Mark } from "@/components/Logo";
 import { HeroSearch } from "@/components/HeroSearch";
 import { CostCalculator } from "@/components/CostCalculator";
@@ -20,7 +20,6 @@ export default function Home() {
   const props = publishedProperties().slice(0, 3);
   const devs = publishedDevelopments().slice(0, 3);
   const articles = publishedArticles().slice(0, 3);
-  const hero = site.media.hero;
   const d = (s: string) => ({ ["--d" as string]: s });
 
   return (
@@ -28,14 +27,10 @@ export default function Home() {
       {/* 01 — Hero */}
       <section className="dark relative isolate overflow-hidden bg-[var(--midnight-deep)] text-[var(--on-dark)]" aria-labelledby="hero-title">
         <div className="absolute inset-0 -z-10">
-          {hero ? (
-            <>
-              <Image src={hero.src} alt={hero.alt} fill priority sizes="100vw" className="hero-media object-cover" />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,24,42,.85),rgba(13,24,42,.35)_60%,rgba(13,24,42,.15))]" />
-            </>
-          ) : (
-            <HeroArt className="hero-media h-full w-full" />
-          )}
+          <Photo name="hero" priority sizes="100vw" className="hero-media" position="62% 60%" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,21,38,.88)_0%,rgba(11,21,38,.6)_38%,rgba(11,21,38,.15)_75%,rgba(11,21,38,.25)_100%)]" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[rgba(11,21,38,.55)] to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-[rgba(11,21,38,.8)] to-transparent" />
         </div>
         <div className="wrap relative flex min-h-[min(100svh,980px)] flex-col justify-end pb-44 pt-40 md:pb-52 lg:pb-56">
           <p className="label label-gold enter-fade" style={d(".15s")}>Lumen Realty · Dubai</p>
@@ -79,9 +74,9 @@ export default function Home() {
       <section className="on-ivory band" aria-labelledby="intro-title">
         <div className="wrap grid items-center gap-14 lg:grid-cols-[minmax(0,.95fr)_minmax(0,1fr)] lg:gap-24">
           <figure className="relative min-w-0">
-            <div className="aspect-[4/5] overflow-hidden lg:mr-10"><Plate seed="intro-arcade" tone="teal" kind="arcade" className="h-full w-full" /></div>
+            <div className="aspect-[4/5] overflow-hidden lg:mr-10"><PhotoBox name="intro" position="50% 40%" /></div>
             <div className="absolute -bottom-8 right-0 hidden w-[44%] lg:block">
-              <div className="aspect-square overflow-hidden border-[10px] border-[var(--ivory)]"><Plate seed="intro-towers" tone="gold" className="h-full w-full" /></div>
+              <div className="aspect-square overflow-hidden border-[10px] border-[var(--ivory)]"><PhotoBox name="intro-detail" sizes="25vw" /></div>
             </div>
           </figure>
           <div className="min-w-0">
@@ -115,11 +110,11 @@ export default function Home() {
           {props.length === 0 && devs.length === 0 && (
             <div className="mt-16 grid gap-px bg-[var(--rule)] md:grid-cols-2">
               {[
-                { href: "/properties", t: "Properties", h: "Ready homes for sale and rent", b: "Apartments, villas and penthouses in the communities we know best. Our verified listings are being prepared for publication.", tone: "navy" as const, kind: "villa" as const },
-                { href: "/developments", t: "New developments", h: "Off-plan projects, explained properly", b: "Developer track record, payment plans and handover timelines, set out side by side before you reserve.", tone: "teal" as const, kind: "towers" as const },
+                { href: "/properties", t: "Properties", h: "Ready homes for sale and rent", b: "Apartments, villas and penthouses in the communities we know best. Our verified listings are being prepared for publication.", tone: "navy" as const, kind: "villa" as const, photo: "collection-properties" as const },
+                { href: "/developments", t: "New developments", h: "Off-plan projects, explained properly", b: "Developer track record, payment plans and handover timelines, set out side by side before you reserve.", tone: "teal" as const, kind: "towers" as const, photo: "collection-developments" as const },
               ].map((x) => (
                 <Link key={x.href} href={x.href} className="zoom-host group grid bg-[var(--paper)] no-underline">
-                  <div className="zoom-frame aspect-[16/10] overflow-hidden"><Plate seed={x.href} tone={x.tone} kind={x.kind} className="h-full w-full" /></div>
+                  <div className="zoom-frame aspect-[16/10] overflow-hidden"><PhotoBox name={x.photo} /></div>
                   <div className="grid gap-3 p-8 md:p-10">
                     <p className="label label-gold">{x.t}</p>
                     <p className="display t-3 group-hover:text-[var(--lumen-teal)]">{x.h}</p>
@@ -152,7 +147,7 @@ export default function Home() {
                 className={`zoom-host group grid content-start gap-5 no-underline ${["lg:col-span-7", "lg:col-span-5 lg:mt-28", "lg:col-span-5", "lg:col-span-7"][i]}`}
               >
                 <div className={`zoom-frame overflow-hidden ${i % 3 === 0 ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
-                  <Plate seed={`svc-${s.slug}`} tone={s.plate} kind={(["villa", "towers", "arcade", "towers"] as const)[i]} className="h-full w-full" />
+                  <PhotoBox name={`service-${s.slug}` as MediaKey} />
                 </div>
                 <div className="flex items-baseline justify-between gap-6 border-b border-[var(--rule)] pb-4">
                   <h3 className="display t-3 group-hover:text-[var(--lumen-teal)]">{s.name}</h3>

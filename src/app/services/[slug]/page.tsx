@@ -1,8 +1,9 @@
+import { PhotoBox } from "@/components/Photo";
+import type { MediaKey } from "@/content/media";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/ui";
-import { Plate } from "@/components/Art";
 import { LeadForm } from "@/components/LeadForm";
 import { ArrowRight } from "@/components/Icons";
 import { services, getService } from "@/content/services";
@@ -34,7 +35,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <PageHero eyebrow={s.name} title={s.headline} intro={s.intro} crumbs={[{ href: "/", label: "Home" }, { href: "/services", label: "Our Services" }, { label: s.name }]}>
-        <div className="mt-14 aspect-[21/8] overflow-hidden"><Plate seed={`svc-${s.slug}`} tone={s.plate} kind={s.slug === "buy" ? "villa" : s.slug === "rent" ? "arcade" : "towers"} className="h-full w-full" /></div>
+        <div className="mt-14 aspect-[21/8] overflow-hidden"><PhotoBox name={`service-${s.slug}` as MediaKey} sizes="100vw" /></div>
       </PageHero>
 
       <section className="on-ivory band">

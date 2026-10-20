@@ -1,8 +1,9 @@
+import { Photo } from "@/components/Photo";
+import type { MediaKey } from "@/content/media";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs, ConsultationBand } from "@/components/ui";
-import { Plate } from "@/components/Art";
 import { LeadForm } from "@/components/LeadForm";
 import { CommunityCard, DevelopmentCard, PropertyCard } from "@/components/cards";
 import { ArrowUpRight, WhatsApp } from "@/components/Icons";
@@ -33,7 +34,7 @@ export default async function CommunityPage({ params }: { params: Promise<{ slug
     <>
       <section className="dark relative isolate overflow-hidden bg-[var(--midnight-deep)] text-[var(--on-dark)]">
         <div className="absolute inset-0 -z-10">
-          <Plate seed={c.slug} tone={c.tone} kind={index % 3 === 1 ? "villa" : "towers"} className="h-full w-full" />
+          <Photo name={`community-${c.slug}` as MediaKey} sizes="100vw" priority className="hero-media" />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(11,21,38,.92)] via-[rgba(11,21,38,.45)] to-[rgba(11,21,38,.55)]" />
         </div>
         <div className="wrap flex min-h-[min(72svh,700px)] flex-col justify-between pb-14 pt-10">

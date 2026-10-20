@@ -51,6 +51,7 @@ export function Footer() {
           <p className="flex flex-wrap gap-x-6 gap-y-2">
             <Link className="no-underline hover:text-white" href="/privacy-policy">Privacy policy</Link>
             <Link className="no-underline hover:text-white" href="/terms">Terms of use</Link>
+            <Link className="no-underline hover:text-white" href="/credits">Photo credits</Link>
             <span>© {year} Lumen Realty</span>
           </p>
         </div>

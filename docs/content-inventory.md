@@ -20,6 +20,9 @@
 
 ## Media slots
 
+**Update 20 Oct 2026:** all illustration slots now use real photography. Location photos are free-licence Unsplash images listed in `src/content/media.ts` and on `/credits`. Six team portraits were supplied by Lumen and normalised to the same crop, face size and studio backdrop with `tools/normalise-portraits.py`; Mohamad Sabiq still uses the initials card until his photo arrives. Note: Wael Naeem's and Angélica Troya's portraits show a small LPH lapel pin.
+
+
 | Slot | Where | Spec | Status |
 |---|---|---|---|
 | Hero | Homepage | Landscape, ≥ 2400×1500 px, Dubai architecture at dusk or blue hour, a quiet left third for text | Set `site.media.hero` in `site.ts`; the illustration is used until then |

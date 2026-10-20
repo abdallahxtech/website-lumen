@@ -1,3 +1,5 @@
+import { PhotoBox } from "@/components/Photo";
+import type { MediaKey } from "@/content/media";
 import Link from "next/link";
 import Image from "next/image";
 import { Plate } from "./Art";
@@ -41,8 +43,8 @@ export function TeamCard({ member }: { member: TeamMember }) {
 export function CommunityCard({ c, index }: { c: Community; index: number }) {
   return (
     <Link href={`/communities/${c.slug}`} className="zoom-host group relative block aspect-[3/4] min-w-0 overflow-hidden text-[var(--on-dark)] no-underline">
-      <div className="zoom-frame absolute inset-0"><Plate seed={c.slug} tone={c.tone} kind={index % 3 === 1 ? "villa" : "towers"} className="h-full w-full" /></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,24,42,.88)] via-[rgba(13,24,42,.2)] to-transparent" />
+      <div className="zoom-frame absolute inset-0"><PhotoBox name={`community-${c.slug}` as MediaKey} sizes="(min-width:1024px) 25vw, (min-width:640px) 45vw, 80vw" /></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,24,42,.92)] via-[rgba(13,24,42,.35)] to-[rgba(13,24,42,.05)]" />
       <div className="absolute inset-x-0 bottom-0 grid gap-2 p-6">
         <p className="label label-gold num">{String(index + 1).padStart(2, "0")} · {c.masterDeveloper.split(" (")[0]}</p>
         <p className="display text-[2rem] leading-none text-white">{c.name}</p>
@@ -55,10 +57,10 @@ export function CommunityCard({ c, index }: { c: Community; index: number }) {
   );
 }
 
-export function ArticleCard({ a, i }: { a: Article; i: number }) {
+export function ArticleCard({ a }: { a: Article; i?: number }) {
   return (
     <Link href={`/insights/${a.slug}`} className="zoom-host group grid content-start gap-5 no-underline">
-      <div className="zoom-frame aspect-[16/10] overflow-hidden"><Plate seed={a.slug} tone={(["sand", "teal", "navy"] as const)[i % 3]} kind={i % 2 ? "arcade" : "towers"} className="h-full w-full" /></div>
+      <div className="zoom-frame aspect-[16/10] overflow-hidden"><PhotoBox name={`article-${a.slug}` as MediaKey} sizes="(min-width:768px) 33vw, 100vw" /></div>
       <p className="label label-gold">{a.category} · {a.readingMinutes} min read</p>
       <p className="display t-4 group-hover:text-[var(--lumen-teal)]">{a.title}</p>
       <p className="muted text-[.95rem]">{a.dek}</p>
