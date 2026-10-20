@@ -94,6 +94,8 @@ async function sendOdoo(lead: LeadRecord): Promise<CrmResult> {
       email_from: p.email ?? false,
       description: [p.message ?? "", "", ...ctx, "", `Source: ${p.sourcePage ?? "website"}`, `Lumen lead ID: ${p.leadId}`].join("\n"),
       type: "lead",
+      ...(process.env.ODOO_TEAM_ID ? { team_id: Number(process.env.ODOO_TEAM_ID) } : {}),
+      ...(process.env.ODOO_USER_ID ? { user_id: Number(process.env.ODOO_USER_ID) } : {}),
     }],
   ]);
   return { status: "crm_synced", reference: String(id), error: null };
