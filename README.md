@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lumen Realty — website
 
-## Getting Started
+The lumenrealty.ae website: a Next.js (App Router, TypeScript, Tailwind CSS 4) application with a premium editorial design, structured property and development catalogues, community guides, a purchase-cost calculator and lead capture that is stored on the server before any success message is shown.
 
-First, run the development server:
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm ci
+cp .env.example .env.local      # then fill in ADMIN_USER / ADMIN_PASSWORD at least
+npm run dev                     # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Requires Node.js 20.9 or later. `better-sqlite3` builds a native module on install; on Windows this needs the "Desktop development with C++" build tools, or run inside Docker/WSL.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | What it does |
+|---|---|
+| `npm run dev` | Development server |
+| `npm run build` / `npm start` | Production build and server (standalone output in `.next/standalone`) |
+| `npm run lint` / `npm run typecheck` | ESLint and TypeScript checks |
+| `npm test` | Unit and API tests (Vitest) |
+| `npm run test:e2e` | Builds the site twice (real and fixture data) and runs the Playwright suite |
+| `npm run icons` | Regenerates favicons, app icons and the social image from `public/brand` |
+| `npm run audit:a11y` | axe-core WCAG audit and screenshots against a running server |
 
-## Learn More
+## Where things live
 
-To learn more about Next.js, take a look at the following resources:
+| Area | Path |
+|---|---|
+| Company facts, contact details, licensing | `src/content/site.ts` |
+| Team (7 people, exact titles) | `src/content/team.ts` |
+| Properties and developments (empty until verified) | `src/content/listings.ts` |
+| Community guides | `src/content/communities.ts` |
+| Services, process steps, FAQs | `src/content/services.ts` |
+| Insights articles | `src/content/insights.ts` |
+| Purchase-cost assumptions and sources | `src/content/fees.ts` |
+| Design tokens and type | `src/app/globals.css` |
+| Logo (drawn from the approved artwork) | `src/components/Logo.tsx`, `public/brand/` |
+| Lead API, storage, CRM adapters | `src/app/api/leads/route.ts`, `src/lib/leads/` |
+| Lead inbox (Basic auth) | `/admin/leads` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Documentation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Architecture](docs/architecture.md)
+- [Brand system](docs/brand-system.md)
+- [Content inventory and media slots](docs/content-inventory.md)
+- [Project data sources and research backlog](docs/project-data-sources.md)
+- [Lead integration](docs/lead-integration.md)
+- [Testing](docs/testing.md)
+- [Deployment and rollback](docs/deployment.md)
+- [Launch checklist](docs/launch-checklist.md)
