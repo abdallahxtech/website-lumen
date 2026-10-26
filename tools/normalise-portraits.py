@@ -38,6 +38,11 @@ def process(src, dst):
     need = (subj_bottom - cy) * scale
     # keep a constant face size; if the torso ends above the frame, fade it out softly
     W, H = int(im.width * scale), int(im.height * scale)
+    if scale > 1.6:  # edge clean-up: small, already-cut-out photos have a jagged fringe
+        rgba = np.array(cut)
+        m = cv2.erode(rgba[..., 3], np.ones((3, 3), np.uint8), iterations=2)
+        rgba[..., 3] = cv2.GaussianBlur(m, (0, 0), 1.1)
+        cut = Image.fromarray(rgba, "RGBA")
     cut_s = cut.resize((W, H), Image.LANCZOS)
     ox = int(OUT_W / 2 - (fx + fw / 2) * scale)
     # Same face size for everyone; if this photo stops early, lower the head just enough
